@@ -11,49 +11,29 @@ class Solution(object):
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
+        将head设置为一个无用节点，返回head.next
+        之前的思路是返回head
         """
         i = l1
         j = l2
+        carry = 0
 
         head = ListNode(0)
         current = head
 
-        while i and j:
-            s = (current.val+i.val+j.val)
-            current.val = s%10
-            next_node = ListNode(s/10)
-
-            i = i.next
-            j = j.next
-            current.next = next_node
-            current = next_node
-
-        while i:
-            s = (current.val+i.val)
-            current.val = s%10
-            next_node = ListNode(s/10)
-            i = i.next
-            current.next = next_node
-            current = next_node
-
-        while j:
-            s = (current.val+j.val)
-            current.val = s%10
-            next_node = ListNode(s/10)
-            j = j.next
-            current.next = next_node
-            current = next_node
-
-        current = head
-        while current:
-            next_node = current.next
-            if next_node and next_node.next == None and next_node.val == 0:
-                current.next = None
-                break
-            else:
-                current = current.next
-        return head
-
+        while i or j or carry:
+            val = 0
+            if i:
+                val += i.val
+                i = i.next
+            if j:
+                val += j.val
+                j = j.next
+            val += carry
+            carry = val/10
+            current.next = ListNode(val%10)
+            current = current.next
+        return head.next
 def main():
     #case 1
     #[1,8]
@@ -62,9 +42,9 @@ def main():
     #[9,8]
     #[1]
 
-    l1 = ListNode(9)
+    l1 = ListNode(1)
     l1.next = ListNode(8)
-    l2 = ListNode(1)
+    l2 = ListNode(0)
     s = Solution()
     head = s.addTwoNumbers(l1, l2)
 
