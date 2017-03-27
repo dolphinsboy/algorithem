@@ -25,9 +25,6 @@ class Solution(object):
         r = len(ret)
         c = len(not_repeated_str)
 
-
-
-
 def main():
     s = Solution()
     #case = ["abcabcbb", "bbbbb", "pwwkew"]
