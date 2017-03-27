@@ -23,11 +23,10 @@ class Solution(object):
         longest_sub_dict = {}
 
         r = len(ret)
-        for i in range(r):
-            c = len(ret[i])
-            for j in range(c):
-                print "%s"  % str(ret[i][j]) + " ",
-            print
+        c = len(not_repeated_str)
+
+
+
 
 def main():
     s = Solution()
