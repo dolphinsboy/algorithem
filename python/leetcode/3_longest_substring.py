@@ -10,6 +10,7 @@ class Solution(object):
         for c in s:
             if c not in not_repeated_str:
                 not_repeated_str.append(c)
+
         ret = []
         for i in s:
             arr = []
@@ -24,13 +25,26 @@ class Solution(object):
 
         r = len(ret)
         c = len(not_repeated_str)
-
+        longtest = []
+        for i in range(r):
+            for j in range(c):
+                m = i
+                n = j
+                tmp = 0
+                while m < r and n < c:
+                    if ret[m][n]:
+                        tmp += 1
+                    n = n + 1
+                    m = m + 1
+                longtest.append(tmp)
+        return max(longtest) if longtest else 0
 def main():
     s = Solution()
-    #case = ["abcabcbb", "bbbbb", "pwwkew"]
-    case = ["abcabcbb"]
+    case = ["abcabcbb", "bbbbb", "pwwkew", "dvdf", ""]
+    #case = ["dvdf"]
     for d in case:
-        s.lengthOfLongestSubstring(d)
+        print d
+        print s.lengthOfLongestSubstring(d)
 
 if __name__ == '__main__':
     main()
